@@ -11,7 +11,6 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchHistory, setSearchHistory] = useState([]);
-  const [serverStatus, setServerStatus] = useState('checking');
 
   // Load search history on component mount
   useEffect(() => {
@@ -83,16 +82,10 @@ function App() {
     <div className="app">
       <div className="container">
         <h1 className="app-title">WeatherWise Dashboard</h1>
-        {serverStatus === 'offline' && (
-          <div className="server-status error">
-            Server is offline. Please try again later.
-          </div>
-        )}
         
         <SearchBar 
           onSearch={fetchWeatherData} 
           searchHistory={searchHistory}
-          disabled={serverStatus === 'offline' || loading}
         />
         
         {searchHistory.length > 0 && (
