@@ -3,6 +3,9 @@ import './App.css';
 import SearchBar from './components/SearchBar';
 import WeatherCard from './components/WeatherCard';
 
+// Backend API URL - deployed on Render
+const API_URL = 'https://weatherwise-dashboard-backend-gnbt.onrender.com';
+
 function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -39,10 +42,13 @@ function App() {
       setError(null);
       
       console.log(`Fetching weather data for: ${city}`);
-      
-      // Using relative URL with proxy configuration
-      const response = await fetch(`/api/weather?city=${encodeURIComponent(city.trim())}`);
-      
+      console.log('API URL:', `${API_URL}/api/weather?city=${encodeURIComponent(city.trim())}`);
+
+      const response = await fetch(`${API_URL}/api/weather?city=${encodeURIComponent(city.trim())}`, {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' }
+      });
+
       if (!response.ok) {
         throw new Error(`Server returned ${response.status}`);
       }
