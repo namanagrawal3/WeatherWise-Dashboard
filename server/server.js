@@ -17,7 +17,7 @@ const app = express();
 
 // CORS configuration - must be before any routes
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://weather-wise-dashboard.netlify.app'],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Accept', 'Authorization'],
   optionsSuccessStatus: 200
